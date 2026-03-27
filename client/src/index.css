@@ -1,0 +1,609 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ============================================
+   LIQUID GLASS DESIGN SYSTEM
+   Apple-inspired Glassmorphism 2.0
+   ============================================ */
+
+:root {
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-bg-heavy: rgba(255, 255, 255, 0.9);
+  --glass-bg-light: rgba(255, 255, 255, 0.4);
+  --glass-border: rgba(220, 221, 221, 0.5); /* Using VI Light Grey */
+  --glass-border-heavy: rgba(220, 221, 221, 0.8);
+  --glass-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+  --glass-shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.08);
+  --glass-blur: blur(12px);
+  --glass-blur-heavy: blur(20px);
+  /* Pylontech VI Brand Colors - Used as subtle accents */
+  --accent: #00B3BA;          /* 派能蓝 PANTONE 7467C */
+  --accent-hover: #00CCD4;
+  --accent-blue: #2EA7E0;     /* 辅助蓝 PANTONE 2192C */
+  --accent-green: #6FBA2C;    /* 辅助绿 PANTONE 360C */
+  --text-primary: #231815;    /* PANTONE Black 6C */
+  --text-secondary: #595757;  /* Dark Grey */
+  --grey: #9FA0A0;            /* Grey */
+  --light-grey: #DCDDDD;      /* Light Grey */
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 28px;
+  --radius-xl: 36px;
+  --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-spring: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  overflow: hidden;
+  background: #fdfdfd; /* Clean white background */
+}
+
+/* ============================================
+   SUBTLE DEPTH GRADIENT (Non-flashy)
+   ============================================ */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: -2;
+  background: radial-gradient(circle at 50% -20%, #f0f4f4 0%, #fdfdfd 60%);
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: -1;
+  background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+@keyframes meshShift {
+  0% { 
+    background-position: 0% 0%, 100% 0%, 50% 100%, 80% 70%, 20% 60%;
+  }
+  50% {
+    background-position: 20% 30%, 80% 20%, 60% 70%, 70% 80%, 30% 50%;
+  }
+  100% { 
+    background-position: 10% 50%, 90% 30%, 40% 90%, 60% 60%, 40% 70%;
+  }
+}
+
+@keyframes blobFloat {
+  0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+  33% { transform: translate(3%, -2%) rotate(5deg) scale(1.02); }
+  66% { transform: translate(-2%, 3%) rotate(-3deg) scale(0.98); }
+  100% { transform: translate(1%, -1%) rotate(2deg) scale(1.01); }
+}
+
+/* ============================================
+   SCROLLBAR — Transparent Glass Style
+   ============================================ */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 99px;
+  transition: background 0.3s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================
+   GLASS CARD PRIMITIVES
+   ============================================ */
+.glass-panel {
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--glass-shadow);
+  transition: var(--transition-smooth);
+}
+
+.glass-panel:hover {
+  box-shadow: var(--glass-shadow-hover);
+}
+
+.glass-panel-heavy {
+  background: var(--glass-bg-heavy);
+  -webkit-backdrop-filter: var(--glass-blur-heavy);
+  backdrop-filter: var(--glass-blur-heavy);
+  border: 1px solid var(--glass-border-heavy);
+  border-radius: var(--radius-md);
+  box-shadow: var(--glass-shadow);
+}
+
+/* ============================================
+   ANT DESIGN OVERRIDES — Glass Edition
+   ============================================ */
+
+/* Override AntD Layout background  */
+.ant-layout {
+  background: transparent !important;
+}
+
+.ant-layout-header {
+  background: transparent !important;
+}
+
+.ant-layout-content {
+  background: transparent !important;
+}
+
+/* Menu — glass menu items */
+.ant-menu {
+  background: transparent !important;
+  border: none !important;
+}
+
+.ant-menu-horizontal {
+  border-bottom: none !important;
+}
+
+.ant-menu-horizontal > .ant-menu-item,
+.ant-menu-horizontal > .ant-menu-item-selected {
+  border-bottom: none !important;
+}
+
+.ant-menu-horizontal > .ant-menu-item::after,
+.ant-menu-horizontal > .ant-menu-item-selected::after {
+  display: none !important;
+}
+
+.ant-menu-horizontal > .ant-menu-item {
+  color: var(--text-secondary) !important;
+  font-weight: 500;
+  padding: 0 16px !important;
+  margin: 0 4px !important;
+  border-radius: var(--radius-sm) !important;
+  transition: var(--transition-smooth);
+}
+
+.ant-menu-horizontal > .ant-menu-item:hover {
+  color: var(--accent) !important;
+  background: rgba(0, 179, 186, 0.06) !important;
+}
+
+.ant-menu-horizontal > .ant-menu-item-selected {
+  color: var(--accent) !important;
+  background: rgba(0, 179, 186, 0.08) !important;
+  font-weight: 600;
+}
+
+.ant-menu-horizontal > .ant-menu-item a {
+  color: inherit !important;
+}
+
+/* Inline Menu (sidebar) — glass style */
+.ant-menu-inline {
+  background: transparent !important;
+  border: none !important;
+}
+
+.ant-menu-inline .ant-menu-item {
+  border-radius: var(--radius-sm) !important;
+  margin: 2px 0 !important;
+  transition: var(--transition-smooth);
+}
+
+.ant-menu-inline .ant-menu-item:hover {
+  background: rgba(0, 179, 186, 0.08) !important;
+}
+
+.ant-menu-item-selected,
+.ant-menu-item-active {
+  background: rgba(0, 179, 186, 0.08) !important;
+  color: var(--accent) !important;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 179, 186, 0.2) !important;
+}
+
+.ant-menu-item-selected /* Light Mode Styles */
+body.light-mode {
+  color: #231815;
+}
+
+/* Dark Mode Readability Boost */
+body.dark-mode {
+  color: #ffffff !important;
+  background: #121214 !important;
+}
+
+.dark-mode #content-scroller {
+  background: #1c1c1e !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+.dark-mode #content-scroller * {
+  color: #ffffff !important;
+}
+
+.ant-menu-inline, .ant-menu-vertical, .ant-menu-vertical-left {
+  border-right: none !important;
+}
+
+.ant-menu {
+  background: transparent !important;
+}
+
+.ant-menu-submenu-title {
+  border-radius: var(--radius-sm) !important;
+  padding-left: 12px !important;
+}
+
+.ant-menu-submenu-arrow {
+  color: var(--accent) !important;
+  opacity: 1 !important;
+}
+
+.ant-menu-submenu:hover > .ant-menu-submenu-title .ant-menu-submenu-arrow {
+  color: var(--accent) !important;
+}
+
+.ant-menu-item-selected .ant-typography,
+.ant-menu-item-selected span {
+  color: var(--accent) !important;
+  font-weight: 600 !important;
+}
+
+.ant-menu-item::after {
+  display: none !important;
+}
+
+.ant-menu-submenu-title {
+  padding-left: 12px !important;
+}
+
+.ant-menu-submenu-title:hover {
+  background: rgba(0, 179, 186, 0.06) !important;
+}
+
+
+/* Buttons — glass buttons */
+.ant-btn {
+  border-radius: var(--radius-sm) !important;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  transition: var(--transition-smooth);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.ant-btn:hover {
+  transform: translateY(-1px);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.ant-btn-primary {
+  background: var(--accent) !important;
+  border-color: var(--accent) !important;
+  box-shadow: 0 4px 14px rgba(0, 179, 186, 0.3) !important;
+}
+
+.ant-btn-primary:hover {
+  background: var(--accent-hover) !important;
+  box-shadow: 0 8px 20px rgba(0, 179, 186, 0.35) !important;
+  transform: translateY(-2px);
+}
+
+.ant-btn-text {
+  border: none;
+}
+
+.ant-btn-text:hover {
+  background: rgba(0, 0, 0, 0.04) !important;
+}
+
+.ant-input,
+.ant-input-affix-wrapper {
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  background: rgba(255, 255, 255, 0.4);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  transition: var(--transition-smooth);
+  font-family: 'Inter', sans-serif;
+}
+
+.dark-mode .ant-input,
+.dark-mode .ant-input-affix-wrapper {
+  background: rgba(255, 255, 255, 0.05) !important;
+  color: #fff !important;
+}
+
+/* Fix nested background and 'inner square' in inputs with prefixes */
+.ant-input-affix-wrapper input.ant-input {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+}
+
+.ant-input-affix-wrapper {
+  padding: 4px 12px !important;
+}
+
+.ant-input:focus,
+.ant-input-affix-wrapper:focus,
+.ant-input-affix-wrapper-focused {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 3px rgba(0, 179, 186, 0.1) !important;
+  background: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* Aggressive fix for search input 'inner square' */
+.modern-pill-input {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.modern-pill-input.ant-input-affix-wrapper,
+.modern-pill-input.ant-input-affix-wrapper:hover,
+.modern-pill-input.ant-input-affix-wrapper:focus,
+.modern-pill-input.ant-input-affix-wrapper-focused,
+.modern-pill-input .ant-input,
+.modern-pill-input .ant-input:hover,
+.modern-pill-input .ant-input:focus {
+  background-color: inherit !important;
+  background: inherit !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.modern-pill-input input {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* Tags */
+.ant-tag {
+  border-radius: 8px;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Cards — glass cards */
+.ant-card {
+  border-radius: var(--radius-md) !important;
+  overflow: hidden;
+  transition: var(--transition-smooth);
+}
+
+.ant-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Badge */
+.ant-badge-count {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Modal — glass modal */
+.ant-modal-content {
+  border-radius: var(--radius-lg) !important;
+  background: var(--glass-bg-heavy) !important;
+  -webkit-backdrop-filter: var(--glass-blur-heavy) !important;
+  backdrop-filter: var(--glass-blur-heavy) !important;
+  border: 1px solid var(--glass-border) !important;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.15) !important;
+  overflow: hidden;
+}
+
+.ant-modal-header {
+  background: transparent !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+}
+
+.ant-modal-footer {
+  background: transparent !important;
+  border-top: 1px solid rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Message — glass toast */
+.ant-message-notice-content {
+  background: var(--glass-bg-heavy) !important;
+  -webkit-backdrop-filter: var(--glass-blur) !important;
+  backdrop-filter: var(--glass-blur) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: var(--radius-md) !important;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12) !important;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Empty state  */
+.ant-empty-description {
+  color: var(--text-secondary) !important;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ============================================
+   DOCUMENT PREVIEW STYLES
+   ============================================ */
+.markdown-preview {
+  font-family: 'Inter', -apple-system, sans-serif;
+  line-height: 1.8;
+  color: var(--text-primary);
+}
+
+.markdown-preview h1,
+.markdown-preview h2,
+.markdown-preview h3,
+.markdown-preview h4,
+.markdown-preview h5,
+.markdown-preview h6 {
+  margin-top: 1.5em;
+  margin-bottom: 0.8em;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.markdown-preview h1 {
+  font-size: 2em;
+  background: linear-gradient(135deg, var(--text-primary), #4a4a4f);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.markdown-preview h2 {
+  font-size: 1.5em;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  padding-bottom: 0.3em;
+}
+
+.markdown-preview h3 { font-size: 1.25em; }
+
+.markdown-preview p {
+  margin-bottom: 1em;
+  text-align: justify;
+}
+
+.markdown-preview ul, .markdown-preview ol {
+  margin-bottom: 1em;
+  padding-left: 2em;
+}
+
+.markdown-preview li { margin-bottom: 0.5em; }
+
+.markdown-preview blockquote {
+  border-left: 4px solid var(--accent);
+  padding: 12px 16px;
+  margin: 1em 0;
+  color: #555;
+  background: rgba(0, 113, 227, 0.04);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.markdown-preview code {
+  background: rgba(0, 0, 0, 0.05);
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-size: 0.9em;
+}
+
+.markdown-preview pre {
+  background: rgba(0, 0, 0, 0.04);
+  padding: 1em;
+  border-radius: var(--radius-sm);
+  overflow: auto;
+  margin: 1em 0;
+}
+
+.markdown-preview table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  margin: 1em 0;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.markdown-preview th,
+.markdown-preview td {
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  padding: 10px 14px;
+}
+
+.markdown-preview th {
+  background: rgba(0, 0, 0, 0.03);
+  font-weight: 600;
+}
+
+/* ============================================
+   OUTLINE SIDEBAR ITEMS
+   ============================================ */
+.outline-item {
+  transition: var(--transition-smooth);
+  color: var(--text-secondary);
+}
+
+.outline-item:hover {
+  background: rgba(0, 113, 227, 0.08);
+  color: var(--accent);
+}
+
+/* ============================================
+   HIGHLIGHT CARDS
+   ============================================ */
+.highlight-card {
+  transition: var(--transition-smooth) !important;
+}
+
+.highlight-card:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.06) !important;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glassShine {
+  0% { background-position: -100% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+  :root {
+    --radius-md: 16px;
+    --radius-lg: 20px;
+    --radius-xl: 24px;
+  }
+}
+
+/* ============================================
+   PRINT
+   ============================================ */
+@media print {
+  body::before, body::after { display: none; }
+  .glass-panel, .glass-panel-heavy {
+    background: #fff;
+    backdrop-filter: none;
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+}

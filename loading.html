@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文件分析与检索系统</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .logo {
+            width: 64px;
+            height: 64px;
+            background: #00B3BA;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 16px rgba(0, 179, 186, 0.2);
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .logo-svg {
+            width: 32px;
+            height: 32px;
+            fill: white;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #231815;
+            margin: 0 0 12px 0;
+            font-weight: 600;
+        }
+
+        p {
+            font-size: 14px;
+            color: #86868b;
+            margin: 0 0 32px 0;
+        }
+
+        .loader {
+            width: 240px;
+            height: 4px;
+            background: #f0f0f0;
+            border-radius: 2px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .loader-bar {
+            position: absolute;
+            height: 100%;
+            width: 50%;
+            background: #00B3BA;
+            border-radius: 2px;
+            animation: loading 1.5s infinite ease-in-out;
+        }
+
+        @keyframes loading {
+            0% { left: -50%; }
+            100% { left: 100%; }
+        }
+        
+        .status-text {
+            margin-top: 16px;
+            font-size: 12px;
+            color: #bfbfbf;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <svg class="logo-svg" viewBox="0 0 24 24">
+                <path d="M21,5c-1.1,0-2-0.9-2-2h-2c0,1.1-0.9,2-2,2s-2-0.9-2-2h-2c0,1.1-0.9,2-2,2s-2-0.9-2-2H5c0,1.1-0.9,2-2,2s-2-0.9-2-2v16 c0,1.1,0.9,2,2,2h18c1.1,0,2-0.9,2-2V5c0-1.1-0.9-2-2-2H21z M18,19H6v-2h12V19z M18,15H6v-2h12V15z M18,11H6V9h12V11z"/>
+            </svg>
+        </div>
+        <h1>文件分析与检索系统</h1>
+        <p>正在初始化环境，请稍候...</p>
+        <div class="loader">
+            <div class="loader-bar"></div>
+        </div>
+        <div class="status-text" id="status">正在启动后台服务...</div>
+    </div>
+    
+    <script>
+        // Optional: you can update status from main process via IPC if nodeIntegration 
+        // but here we just wait for the server to redirect us.
+    </script>
+</body>
+</html>
