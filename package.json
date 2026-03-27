@@ -1,7 +1,7 @@
 {
-  "name": "company-regulations-search-engine",
-  "version": "1.0.0",
-  "description": "企业规章制度检索管理系统",
+  "name": "rulescope",
+  "version": "0.0.1",
+  "description": "Desktop app for browsing, searching, and outlining regulation documents.",
   "main": "main.js",
   "scripts": {
     "start": "node server-filemanager.js",
@@ -15,11 +15,12 @@
     "install:all": "npm install && cd client && npm install"
   },
   "keywords": [
-    "企业规章制度",
-    "文档管理",
-    "检索系统",
-    "版本管理",
-    "文档对比"
+    "regulations",
+    "document-browser",
+    "desktop-app",
+    "electron",
+    "word-outline",
+    "search"
   ],
   "author": "Company Regulations Team",
   "license": "MIT",
@@ -57,8 +58,8 @@
     "typescript": "^5.1.6"
   },
   "build": {
-    "appId": "com.pylontech.regs",
-    "productName": "公司规章检索分析系统",
+    "appId": "com.pumatlarge.rulescope",
+    "productName": "RuleScope",
     "directories": {
       "output": "dist/desktop"
     },

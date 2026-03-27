@@ -1,53 +1,52 @@
-# Company Regulations Search Engine
+# RuleScope
 
-A desktop document browser for internal regulations and policy documents. The app supports uploading Word, text, and PDF files, browsing versions, extracting Word auto-numbered outlines, searching inside documents, and collecting highlights.
+RuleScope is a desktop app for browsing, searching, and outlining regulation documents. It is designed for structured policy files in Word, text, and PDF formats, with special support for Word auto-numbering recognition such as `Chapter 1`, `Article 1`, and `(1)` style headings.
 
-## Features
+[中文说明](./README.zh-CN.md)
 
-- Electron desktop app with an embedded Express server
+## Highlights
+
+- Desktop app built with Electron
 - React + Ant Design frontend
-- Upload and manage `.docx`, `.doc`, `.txt`, and `.pdf` files
-- Word auto-numbering recognition for headings such as `第一章`, `第一条`, `（一）`
-- Structured outline generation from uploaded Word documents
-- In-document search and quick outline navigation
-- Highlight collection with notes and pinning
-- Chinese / English UI language switch
-- Portable desktop packaging support
+- Embedded Express backend
+- Upload and manage `.docx`, `.doc`, `.txt`, and `.pdf`
+- Automatic outline extraction from Word numbering definitions
+- In-document search and outline navigation
+- Highlight collection with note support
+- Chinese / English language switch
+- Portable Windows build support
 
-## Project Structure
+## Screenshots
 
-```text
-client/                 React frontend
-controllers/            Optional backend controllers
-middleware/             Express middleware
-models/                 Backend models
-routes/                 API routes
-scripts/                Utility scripts
-tests/                  Test files
-utils/                  Document extraction and processing utilities
-main.js                 Electron entry
-server-filemanager.js   Main backend used by the desktop app
-loading.html            Startup loading page
-```
+![RuleScope screenshot](./assets/screenshots/rulescope-main.png)
 
-## Tech Stack
+## Download and Use the EXE
 
-- Electron
-- Node.js
-- Express
-- React 18
-- Ant Design
-- Mammoth
-- diff
+The recommended way for end users is to use the portable Windows package from GitHub Releases.
 
-## Local Development
+### Steps
+
+1. Open the latest release on GitHub.
+2. Download the portable package.
+3. Extract the folder to any local directory.
+4. Run `RuleScope.exe` or the packaged application executable inside the extracted folder.
+5. Keep the executable and the `resources` folder together in the same directory.
+
+### Notes for the portable version
+
+- No installer is required.
+- The app stores uploaded files and local metadata next to the portable executable during packaged usage.
+- If you move the portable folder, move the entire folder together.
+- Do not delete the `resources` folder or the locale files beside the executable.
+
+## Development
 
 ### Requirements
 
 - Node.js 18 or later recommended
 - npm 8 or later
 
-### Install
+### Install dependencies
 
 ```bash
 npm install
@@ -70,40 +69,49 @@ cd client
 npm start
 ```
 
-Or use the combined script from the root:
+Or run both:
 
 ```bash
 npm run dev
 ```
 
-### Build frontend
+### Build the frontend
 
 ```bash
 cd client
 npm run build
 ```
 
-### Run Electron
+### Run Electron locally
 
 ```bash
 npm run electron
 ```
 
+## Project Structure
+
+```text
+client/                 React frontend
+controllers/            Backend controllers
+middleware/             Express middleware
+models/                 Data models
+routes/                 API routes
+scripts/                Utility scripts
+tests/                  Test files
+utils/                  Document parsing utilities
+main.js                 Electron entry
+server-filemanager.js   Desktop backend entry
+```
+
 ## Data Files
 
-The application uses local JSON files for metadata and highlights during desktop usage:
+The packaged desktop app uses local JSON files and an upload directory during runtime:
 
 - `db.json`
 - `highlights.json`
 - `uploads/`
 
-These files are intentionally excluded from version control and will be created locally when needed.
-
-## Open Source Notes
-
-- Sample business documents are not included in this repository.
-- Local build outputs and packaged binaries are not included.
-- Environment files such as `.env` are excluded from version control.
+These runtime files are not tracked in Git.
 
 ## License
 
